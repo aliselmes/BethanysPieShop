@@ -1,23 +1,31 @@
-﻿@model BethanysPieShop.ViewModels.PieListViewModel
+﻿@model PieListViewModel
 
-<!DOCTYPE html>
+<h1>@Model.CurrentCategory</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Bethany's Pie Shop'</title>
-</head>
-<body>
-    <h1>@Model.CurrentCategory</h1>
     @foreach (var pie in Model.Pies)
     {
-        <div>
-            <h2>@pie.Name</h2>
-            <h3>@pie.Price.ToString("c")</h3>
-            <h4>@pie.Category.CategoryName</h4>
+        <div class="col">
+            <div class="card pie-card">
+                <img src="@pie.ImageThumbnailUrl" class="card-img-top" alt="@pie.Name">
+                <div class="card-body pie-button">
+                    <h4 class="d-grid">
+                    </h4>
+
+                    <div class="d-flex justify-content-between mt-2">
+                        <h2 class="text-start">
+                            <a class="pie-link">@pie.Name</a>
+                        </h2>
+                        <h5 class="text-nowrap">
+                            @pie.Price.ToString("c")
+                        </h5>
+                    </div>
+                </div>
+            </div>
         </div>
     }
-</body>
-</html>
+
+</div>
+
 
 
