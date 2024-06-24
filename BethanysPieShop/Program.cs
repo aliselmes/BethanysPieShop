@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BethanysPieShop.App;
 using BethanysPieShop.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,7 @@ builder.Services.AddControllersWithViews()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 builder.Services.AddRazorPages();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddDbContext<BethanysPieShopDbContext>(options =>
 {
@@ -34,7 +36,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapDefaultControllerRoute();
+app.UseAntiforgery();
 app.MapRazorPages();
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 DbInitializer.Seed(app);
 app.Run();
